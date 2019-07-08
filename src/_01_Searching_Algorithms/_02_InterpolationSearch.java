@@ -10,12 +10,56 @@ public class _02_InterpolationSearch {
 	
 	//1. Complete the steps in the interpolationSearch method
 	//   We can assume array is already sorted and uniformly distributed
+	
+	
+	
+	
+	/*
+	 * The code given doesn't work for the case in which start = end, which occurs when searching for the final integer in the array.  The first if statement was added to fix this
+	 * 
+	 * 
+	 * 
+	 * 
+	 * 
+	 * 
+	 * 
+	 * 
+	 * 
+	 * 
+	 * 
+	 * 
+	 * 
+	 * 
+	 * 
+	 * 
+	 * 
+	 * 
+	 */
 	public static int interpolationSearch(int[] array, int value)
     {
         //2. create two integers called start and end.
 		//   initialize them to 0 and the length of the array minus one
 		//   respectively
-      
+      int start = 0;
+      int end = array.length - 1;
+      while(start <= end && value >= array[start] && value <= array[end])
+      {
+    	  if(start == end)
+    	  {
+    		  if(array[start] == value)
+    			  return start;
+    		  else
+    			  return -1;
+    	  }
+    		  
+    	  int position = start + (((end - start) / (array[end] - array[start])) * (value - array[start]));
+    	  if(array[position] == value)
+    		  return position;
+    	  if(array[position] < value)
+    		  start = position + 1;
+    	  else
+    		  end = position - 1;
+      }
         //3. Make a while loop that runs while the following conditions are true:
         //   start is less than or equal to end
         //   value is greater than or equal to the array element at start
@@ -35,6 +79,6 @@ public class _02_InterpolationSearch {
             //7. otherwise, set end equal to position minus one
           
         //8. Return -1 because the value was not found
-        return 0;
+        return -1;
     }
 }
